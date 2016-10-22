@@ -44,7 +44,6 @@ public class CreateActivity extends AppCompatActivity {
 
             public void onClick(View arg0) {
 
-
                 Intent nextScreen = new Intent(CreateActivity.this, ViewProjectsActivity.class);
                 startActivity(nextScreen);
             }

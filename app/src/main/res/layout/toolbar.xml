@@ -6,6 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#4d7dac"
+    android:fitsSystemWindows="true"
+    android:stateListAnimator="@animator/always_appear_elevated"
     app:theme="@style/ThemeOverlay.AppCompat.Dark">
     <ImageView
         android:layout_width="wrap_content"

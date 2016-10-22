@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4d7dac"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,66 +12,68 @@
     tools:context="hackathon_16_npt.com.example.nishant.projects.LoginActivity">
 
 
-
-    <TextView
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Username"
-        android:id="@+id/textView3"
-        android:layout_marginTop="128dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TxtUserName"
-        android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password"
-        android:id="@+id/textView4"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TxtPass"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:id="@+id/BtnSignIn"
-        android:layout_below="@+id/TxtPass"
-        android:layout_alignLeft="@+id/TxtPass"
-        android:layout_alignStart="@+id/TxtPass"
-        android:layout_margin="10dp"
-        android:background="@null"
-        android:layout_alignRight="@+id/TxtPass"
-        android:layout_alignEnd="@+id/TxtPass" />
+        android:layout_above="@+id/TxtUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:maxHeight="150dp"
+        android:maxWidth="150dp"
+        android:src="@drawable/ic_school_black_24dp" />
 
     <Button
         android:id="@+id/BtnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/BtnSignIn"
-        android:text="Sign Up"
-        android:background="@null"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"/>
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:gravity="center_horizontal"
+        android:text="Don't have an accout"
+        android:textAllCaps="false"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:id="@+id/TxtUserName"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="Username"
+        android:maxLength="1000"
+        android:maxLines="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/TxtPass"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:hint="Password"
+        android:maxLines="1"
+        android:layout_below="@+id/TxtUserName"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/BtnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textSize="25sp"
+        android:text="Sign In"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_below="@+id/TxtPass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>
+
+

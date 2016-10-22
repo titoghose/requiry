@@ -8,13 +8,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.microsoft.azure.storage.CloudStorageAccount;
 import com.microsoft.azure.storage.blob.BlobContainerPermissions;
@@ -52,16 +58,32 @@ public class RegistrationActivity extends Activity // definition of the class Re
     Button submit;
     String picturePath;
     private Spinner spinner;
-
+    Animation fade_in, fade_out;
+    ViewFlipper viewFlipper;
     private String storageConnectionString;
 
     private static int RESULT_LOAD_IMAGE = 1;
     private URI imgURI;
+    private Toolbar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        /**BACKGROUND IMAGE CHANGE**/
+
+       /* viewFlipper = (ViewFlipper) this.findViewById(R.id.bckgrndViewFlipper1);
+        fade_in = AnimationUtils.loadAnimation(this,
+                android.R.anim.fade_in);
+        fade_out = AnimationUtils.loadAnimation(this,
+                android.R.anim.fade_out);
+        viewFlipper.setInAnimation(fade_in);
+        viewFlipper.setOutAnimation(fade_out);
+//sets auto flipping
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(2000);
+        viewFlipper.startFlipping();*/
 
         /*ImageButton back = (ImageButton) findViewById(R.id.Btn_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +99,24 @@ public class RegistrationActivity extends Activity // definition of the class Re
         //Intent i = getIntent();
         //MobileServiceList<Profile> profiles = (MobileServiceList<Profile>) i.getSerializableExtra("Current Profile");
 
+        ImageButton back = (ImageButton) findViewById(R.id.Btn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+
+
+                Intent nextScreen = new Intent(RegistrationActivity.this, LoginActivity.class);
+                startActivity(nextScreen);
+            }
+
+        });
+
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(my_toolbar);
+
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         try {
             mClient = new MobileServiceClient("http://requiry.azurewebsites.net", this);
         } catch (MalformedURLException e) {
@@ -84,12 +124,14 @@ public class RegistrationActivity extends Activity // definition of the class Re
         }
         spinner = (Spinner) findViewById(R.id.prof_stud);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        String array[]={"Professor","Student"};
+        String array[] = {"Professor", "Student"};
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.designation, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
 
         profilepic = (ImageView) findViewById(R.id.profilepic);
         upload = (Button) findViewById(R.id.uploadBtn);
@@ -102,16 +144,16 @@ public class RegistrationActivity extends Activity // definition of the class Re
             }
         });
 
-        name = (EditText)findViewById(R.id.name);
-        email = (EditText)findViewById(R.id.email);
+        name = (EditText) findViewById(R.id.name);
+        email = (EditText) findViewById(R.id.email);
         qualification = (EditText) findViewById(R.id.qualification);
-        phone = (EditText)findViewById(R.id.phone);
+        phone = (EditText) findViewById(R.id.phone);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         interest1 = (EditText) findViewById(R.id.interest1);
         interest2 = (EditText) findViewById(R.id.interest2);
         interest3 = (EditText) findViewById(R.id.interest3);
-        submit = (Button)findViewById(R.id.submit);
+        submit = (Button) findViewById(R.id.submit);
 
         /*
        int flag=0;
@@ -145,7 +187,7 @@ public class RegistrationActivity extends Activity // definition of the class Re
                 runBlob();
                 p.setProfilePicURL(String.valueOf(imgURI));
 
-                if(checkEmpty(name) || checkEmpty(email) || checkEmpty(phone) || checkEmpty(username) || checkEmpty(password) || checkEmpty(interest1))
+                if (checkEmpty(name) || checkEmpty(email) || checkEmpty(phone) || checkEmpty(username) || checkEmpty(password) || checkEmpty(interest1))
                     Toast.makeText(RegistrationActivity.this, "Cannot leave fields empty", Toast.LENGTH_SHORT).show();
                 else {
                     if (!emailValidator(email.getText().toString())) {
@@ -156,7 +198,7 @@ public class RegistrationActivity extends Activity // definition of the class Re
                         phone.requestFocus();
                         phone.setError("Invalid Contact");
                     }
-                    if(emailValidator(email.getText().toString()) && numberValidater(phone.getText().toString()) /*&& finalFlag == 0*/) {
+                    if (emailValidator(email.getText().toString()) && numberValidater(phone.getText().toString()) /*&& finalFlag == 0*/) {
                         mClient.getTable(Profile.class).insert(p, new TableOperationCallback<Profile>() {
                             @Override
                             public void onCompleted(Profile entity, Exception exception, ServiceFilterResponse response) {
@@ -270,5 +312,16 @@ public class RegistrationActivity extends Activity // definition of the class Re
 
     private boolean checkEmpty(EditText txt){
         return txt.getText().toString().trim().length()==0;
+    }
+
+
+
+
+    public Toolbar getSupportActionBar() {
+        return supportActionBar;
+    }
+
+    public void setSupportActionBar(Toolbar supportActionBar) {
+        this.supportActionBar = supportActionBar;
     }
 } // end of the class definition

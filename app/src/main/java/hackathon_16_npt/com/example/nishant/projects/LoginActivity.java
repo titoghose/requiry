@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         SignIn = (Button) findViewById(R.id.BtnSignIn);
         SignUp = (Button) findViewById(R.id.BtnSignUp);
 
-        refreshItemsFromTable();
+        refreshItemsFromTable(User_Name.getText().toString(),User_Pass.getText().toString());
 
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,10 +112,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent regScreen = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(regScreen);
-                refreshItemsFromTable();
             }
         });
 
+
+
+        /**EDIT TEXT ENTER PRESSED CODE**/
     }
     @Override
     public void onBackPressed(){
@@ -123,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-    private void refreshItemsFromTable() {
+    private void refreshItemsFromTable(final String u, final String p) {
 
         new AsyncTask<Void, Void, Void>() {
 
@@ -142,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkEmpty(EditText txt){
         return txt.getText().toString().trim().length()==0;
     }
+
 
 
 

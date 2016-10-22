@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#00d4ad"
+    android:fitsSystemWindows="true"
+    android:stateListAnimator="@animator/always_appear_elevated"
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
     >
 
