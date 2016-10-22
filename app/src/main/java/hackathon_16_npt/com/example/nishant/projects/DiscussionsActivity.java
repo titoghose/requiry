@@ -6,7 +6,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +29,7 @@ import java.net.MalformedURLException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DiscussionsActivity extends AppCompatActivity {
+public class DiscussionsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private MobileServiceClient mClient;
     private MobileServiceTable<Discussions> mDiscussionsTable;
@@ -54,6 +59,14 @@ public class DiscussionsActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         name = (String) i.getSerializableExtra("Project");
+
+        /**TOOLBAR CODES**/
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(my_toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        // getSupportActionBar().setIcon(R.drawable.ic_chrome_reader_mode_black_24dp);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         /*
             Code to create MobileServiceClient and Table objects to read data from server
@@ -86,6 +99,40 @@ public class DiscussionsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        int textlength = newText.length();
+        //MobileServiceList<ResearchProject> tempList = new MobileServiceList<ResearchProject>();
+        mAdapter = new DiscussionsAdapter(this, R.layout.discussions_message);
+        for(Discussions item: result){
+            if (textlength <= item.getMessage().length() || textlength<= item.getUsername().length()) {
+                if (item.getMessage().toLowerCase().contains(newText.toString().toLowerCase()) || item.getUsername().toLowerCase().contains(newText.toString().toLowerCase())) {
+                    mAdapter.add(item);
+                }
+            }
+        }
+        ListView listViewToDo = (ListView) findViewById(R.id.msgview);
+        listViewToDo.setAdapter(mAdapter);
+        return false;
+    }
+
     public void startTimer(){
         timer = new Timer();
         initializeTimerTask();

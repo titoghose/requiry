@@ -6,6 +6,9 @@
     android:orientation="vertical"
     tools:context=".DiscussionsActivity">
 
+    <include layout="@layout/discussiontoolbar"
+        android:id="@+id/toolbar2"/>
+
     <ListView
         android:id="@+id/msgview"
         android:layout_width="fill_parent"
