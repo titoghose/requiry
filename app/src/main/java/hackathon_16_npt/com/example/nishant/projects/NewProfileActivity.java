@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class NewProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,19 +33,15 @@ public class NewProfileActivity extends AppCompatActivity implements NavigationV
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         SharedPreferences sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE);
         Profile p = new Profile();
         p.setName(sharedPreferences.getString("nameKey",""));
-        p.setUsername(sharedPreferences.getString("usernameKey",""));
-        p.setPassword(sharedPreferences.getString("passwordKey",""));
-        p.setEmail(sharedPreferences.getString("emailKey",""));
-        p.setPhone_no(sharedPreferences.getString("phoneKey",""));
-        p.setDesignation(sharedPreferences.getString("designationKey",""));
-        p.setQualification(sharedPreferences.getString("qualificationsKey",""));
-        p.setInterest1(sharedPreferences.getString("interest1Key",""));
-        p.setInterest2(sharedPreferences.getString("interest2Key",""));
-        p.setInterest3(sharedPreferences.getString("interest3Key",""));
         p.setProfilePicURL(sharedPreferences.getString("profilePicURLKey",""));
+        p.setUsername(sharedPreferences.getString("usernameKey",""));
+
+        TextView username = (TextView) findViewById(R.id.username);
+        username.setText(p.getUsername());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("INFO"));
@@ -53,9 +50,9 @@ public class NewProfileActivity extends AppCompatActivity implements NavigationV
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         getSupportActionBar().setTitle(null);
 
+
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -93,6 +90,12 @@ public class NewProfileActivity extends AppCompatActivity implements NavigationV
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navDrawer);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerLayout = navigationView.getHeaderView(0);
+
+        TextView name = (TextView) headerLayout.findViewById(R.id.nav_name_textView);
+        name.setText(p.getName());
+
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);

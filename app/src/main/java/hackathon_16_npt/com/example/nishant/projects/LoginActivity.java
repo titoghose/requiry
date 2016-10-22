@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         SignIn = (Button) findViewById(R.id.BtnSignIn);
         SignUp = (Button) findViewById(R.id.BtnSignUp);
 
-        refreshItemsFromTable(User_Name.getText().toString(),User_Pass.getText().toString());
+        refreshItemsFromTable();
 
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent regScreen = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(regScreen);
+                refreshItemsFromTable();
             }
         });
 
@@ -122,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-    private void refreshItemsFromTable(final String u, final String p) {
+    private void refreshItemsFromTable() {
 
         new AsyncTask<Void, Void, Void>() {
 

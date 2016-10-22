@@ -88,7 +88,7 @@
             android:layout_marginStart="10dp" />
 
         <TextView
-            android:id="@+id/profile_contact_input"
+            android:id="@+id/profile_contactinput"
             android:hint="your contact number here"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,14 +166,14 @@
 
         <TextView
 
-            android:id="@+id/designation"
+            android:id="@+id/profile_qualification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="your qualifications here"
             android:layout_alignBaseline="@+id/textView7"
             android:layout_alignBottom="@+id/textView7"
-            android:layout_alignLeft="@+id/profile_contact_input"
-            android:layout_alignStart="@+id/profile_contact_input" />
+            android:layout_alignLeft="@+id/profile_contactinput"
+            android:layout_alignStart="@+id/profile_contactinput" />
 
         <TextView
             android:id="@+id/textView8"
@@ -182,8 +182,8 @@
             android:hint="a little about yourself!"
             android:layout_alignBaseline="@+id/textView9"
             android:layout_alignBottom="@+id/textView9"
-            android:layout_alignLeft="@+id/designation"
-            android:layout_alignStart="@+id/designation" />
+            android:layout_alignLeft="@+id/profile_qualification"
+            android:layout_alignStart="@+id/profile_qualification" />
 
 
     </RelativeLayout>

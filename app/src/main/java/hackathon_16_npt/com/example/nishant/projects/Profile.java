@@ -11,6 +11,8 @@ public class Profile implements Serializable{
     private String id;
     private String name;
     private String email;
+    private String institution;
+    private String description;
     private String phone_no;
     private String username;
     private String password;
@@ -130,5 +132,21 @@ public class Profile implements Serializable{
 
     public void setProfilePicURL(String profilePicURL) {
         this.profilePicURL = profilePicURL;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 } // end of the class definition
