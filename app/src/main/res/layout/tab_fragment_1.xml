@@ -45,7 +45,7 @@
             android:textSize="17sp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/profilePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -57,7 +57,7 @@
             android:maxWidth="125dp"
             android:padding="1dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/personimg" />
+            android:src="@drawable/personimg" />
 
 
         <TextView
@@ -71,8 +71,8 @@
             android:textSize="17sp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/imageView2"
-            android:layout_alignStart="@+id/imageView2" />
+            android:layout_alignLeft="@+id/profilePic"
+            android:layout_alignStart="@+id/profilePic" />
 
 
         <TextView

@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import static hackathon_16_npt.com.example.nishant.projects.R.id.profile_name;
 
 
 public class TabFragment1 extends Fragment {
@@ -39,6 +42,9 @@ public class TabFragment1 extends Fragment {
         p.setInterest3(sharedPreferences.getString("interest3Key",""));
         p.setProfilePicURL(sharedPreferences.getString("profilePicURLKey",""));
         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
+
+        ImageView profile = (ImageView) v.findViewById (R.id.profilePic);
+        profile.setImageBitmap(p.getProfilePicURL());
 
         TextView profile_name = (TextView) v.findViewById(R.id.profile_name);
         profile_name.setText(p.getName());
