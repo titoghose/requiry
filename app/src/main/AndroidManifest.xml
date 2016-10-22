@@ -54,7 +54,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".DiscussionsActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
