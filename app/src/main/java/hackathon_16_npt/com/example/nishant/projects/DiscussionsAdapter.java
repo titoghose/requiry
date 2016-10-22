@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class InterestAdapter extends ArrayAdapter<String>{
+public class DiscussionsAdapter extends ArrayAdapter<Discussions>{
 
     Context mContext; //Adapter context
     int mLayoutResourceId; //Adapter View Layout
@@ -21,7 +21,7 @@ public class InterestAdapter extends ArrayAdapter<String>{
     /*  ResearchProjectAdapter that calls constructor of ArrayAdapter with mContext and
         mLayoutResourceId as parameters */
 
-    public InterestAdapter(Context context, int layoutResourceId) {
+    public DiscussionsAdapter(Context context, int layoutResourceId) {
         super(context, layoutResourceId);
 
         mContext = context;
@@ -34,7 +34,7 @@ public class InterestAdapter extends ArrayAdapter<String>{
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
 
-        final String currentItem = getItem(position);
+        final Discussions currentItem = getItem(position);
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -43,8 +43,13 @@ public class InterestAdapter extends ArrayAdapter<String>{
 
         row.setTag(currentItem);
 
-        final TextView tv1 = (TextView) row.findViewById(R.id.interest);
-        tv1.setText(currentItem);
+        final TextView tv1 = (TextView) row.findViewById(R.id.username);
+        tv1.setText(currentItem.getUsername());
+
+        final TextView tv2 = (TextView) row.findViewById(R.id.message);
+        tv2.setText(currentItem.getMessage());
+
+
 
         return row;
     }

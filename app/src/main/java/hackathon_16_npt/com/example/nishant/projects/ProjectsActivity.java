@@ -1,42 +1,18 @@
 package hackathon_16_npt.com.example.nishant.projects;
 
-import android.app.Activity;
-
-import java.net.MalformedURLException;
-
-import hackathon_16_npt.com.example.nishant.projects.R;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.SettableFuture;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.MobileServiceList;
-import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 
 public class ProjectsActivity extends AppCompatActivity {
@@ -52,6 +28,7 @@ public class ProjectsActivity extends AppCompatActivity {
     private String description;
     private String emailId;
     private String contactNum;
+    private ResearchProject rp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +36,7 @@ public class ProjectsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_projects);
 
         Intent i = getIntent();
-        ResearchProject rp = (ResearchProject) i.getSerializableExtra("Project");
+        rp = (ResearchProject) i.getSerializableExtra("Project");
 
         /*Toolbar my_toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(my_toolbar);
@@ -99,6 +76,16 @@ public class ProjectsActivity extends AppCompatActivity {
 
         });
 
+        Button goToDiscussions = (Button) findViewById(R.id.discussions_page);
+        goToDiscussions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent discPage = new Intent(ProjectsActivity.this,DiscussionsActivity.class);
+                discPage.putExtra("Project",rp.getProjectName());
+                startActivity(discPage);
+            }
+        });
+
         ImageButton back = (ImageButton) findViewById(R.id.Btn_Back);
         back.setOnClickListener(new View.OnClickListener() {
 
@@ -107,6 +94,7 @@ public class ProjectsActivity extends AppCompatActivity {
                 startActivity(createIntent);
             }
         });
+
     }
     @Override
     public void onBackPressed() {

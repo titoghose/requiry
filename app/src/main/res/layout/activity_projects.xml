@@ -179,7 +179,15 @@
         android:id="@+id/Btn_Apply"
         android:layout_below="@+id/C_value"
         />
-
+    <Button
+        android:id="@+id/discussions_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to discussions"
+        android:layout_below="@+id/Btn_Apply"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        />
     <!--Button
         android:id="@+id/Btn_Back"
         android:layout_width="wrap_content"
