@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#4d7dac"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:background="@drawable/top_hat"/>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="requiry"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:paddingLeft="5dp"
+        android:fontFamily="sans-serif"
+
+        android:textColor="#ffffff"
+        android:textSize="35dp"
+        android:textStyle="bold"/>
+
+
+    <!--ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:minHeight="45dp"
+        android:minWidth="40dp"
+        android:background="@drawable/ic_chrome_reader_mode_black_24dp"/-->
+
+
+
+
+
+</android.support.v7.widget.Toolbar>

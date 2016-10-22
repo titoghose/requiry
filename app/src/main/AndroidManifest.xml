@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hackathon_16_npt.com.example.nishant.projects">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="Requiry"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyAppTheme">
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="Requiry"
+            android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ViewProjectsActivity"
+            android:label=""
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="com.coderefer.androidsplashscreenexample.MAINACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProjectsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".NewProfileActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ApplyActivity" />
+
+
+        <activity
+            android:name=".CreateActivity"
+            android:label="@string/title_activity_create"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".RegistrationActivity"
+            android:theme="@style/AppTheme"/>
+    </application>
+
+</manifest>
