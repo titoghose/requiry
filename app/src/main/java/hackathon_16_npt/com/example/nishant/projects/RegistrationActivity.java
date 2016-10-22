@@ -33,8 +33,6 @@ import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static hackathon_16_npt.com.example.nishant.projects.Blob.storageConnectionString;
-
 
 public class RegistrationActivity extends Activity // definition of the class RegistrationActivity/,n
 {
@@ -54,6 +52,8 @@ public class RegistrationActivity extends Activity // definition of the class Re
     Button submit;
     String picturePath;
     private Spinner spinner;
+
+    private String storageConnectionString;
 
     private static int RESULT_LOAD_IMAGE = 1;
     private URI imgURI;

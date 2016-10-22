@@ -57,8 +57,6 @@ public class ViewProjectsActivity extends AppCompatActivity implements SearchVie
             Code for custom toolbar
         */
 
-        //Intent i = getIntent();
-        //Profile p = (Profile) i.getSerializableExtra("Current Profile");
         SharedPreferences sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE);
         Profile p = new Profile();
         p.setName(sharedPreferences.getString("nameKey",""));

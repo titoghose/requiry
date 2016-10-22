@@ -21,9 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
     compile 'com.android.support:design:23.4.0'
-
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.2.4'
@@ -34,7 +32,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:support-v13:23.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.google.firebase:firebase-database:9.0.2'
+    compile 'com.google.firebase:firebase-core:9.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.microsoft.azure.android:azure-storage-android:0.7.0@aar'
 
 }
+
+apply plugin: 'com.google.gms.google-services'

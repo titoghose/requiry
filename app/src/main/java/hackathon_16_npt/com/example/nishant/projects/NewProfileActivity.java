@@ -4,29 +4,54 @@ package hackathon_16_npt.com.example.nishant.projects;
  * Created by DELL on 10/21/2016.
  */
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
-public class NewProfileActivity extends AppCompatActivity {
+public class NewProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newprofile);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE);
+        Profile p = new Profile();
+        p.setName(sharedPreferences.getString("nameKey",""));
+        p.setUsername(sharedPreferences.getString("usernameKey",""));
+        p.setPassword(sharedPreferences.getString("passwordKey",""));
+        p.setEmail(sharedPreferences.getString("emailKey",""));
+        p.setPhone_no(sharedPreferences.getString("phoneKey",""));
+        p.setDesignation(sharedPreferences.getString("designationKey",""));
+        p.setQualification(sharedPreferences.getString("qualificationsKey",""));
+        p.setInterest1(sharedPreferences.getString("interest1Key",""));
+        p.setInterest2(sharedPreferences.getString("interest2Key",""));
+        p.setInterest3(sharedPreferences.getString("interest3Key",""));
+        p.setProfilePicURL(sharedPreferences.getString("profilePicURLKey",""));
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("INFO"));
+        tabLayout.addTab(tabLayout.newTab().setText("CREATED PROJECTS"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        getSupportActionBar().setTitle(null);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter
@@ -49,6 +74,32 @@ public class NewProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        ImageButton back = (ImageButton) findViewById(R.id.Btn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+
+
+                Intent nextScreen = new Intent(NewProfileActivity.this, ViewProjectsActivity.class);
+                startActivity(nextScreen);
+            }
+
+        });
+
+
+
+        /**navigation Drawer Layout starts from here**/
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navDrawer);
+        navigationView.setNavigationItemSelectedListener(this);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        toggle.setDrawerIndicatorEnabled(false);
     }
 
     @Override
@@ -66,4 +117,28 @@ public class NewProfileActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.nav_menu_profile :
+                DrawerLayout mDrawerLayout;
+                mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+                mDrawerLayout.closeDrawers();
+
+        }
+
+        switch(item.getItemId()){
+            case R.id.nav_menu_viewproj :
+                DrawerLayout mDrawerLayout;
+                mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+                mDrawerLayout.closeDrawers();
+
+        }
+
+        return false;
+
+    }
+
 }

@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:id="@+id/proj_Name"
-
         android:hint="Project Name"/>
     <EditText
         android:layout_width="match_parent"

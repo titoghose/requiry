@@ -42,6 +42,7 @@
         <activity
             android:name=".NewProfileActivity"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".ApplyActivity" />
 
 

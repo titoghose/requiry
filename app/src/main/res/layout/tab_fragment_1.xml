@@ -1,15 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tab 1"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="152dp"
+            android:fontFamily="sans-serif"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="174dp"
+            android:fontFamily="sans-serif"
+            android:text="Designation"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/profile_institution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="193dp"
+            android:fontFamily="sans-serif"
+            android:text="Institution"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="120dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/profile_img_border"
+            android:cropToPadding="true"
+            android:maxHeight="125dp"
+            android:maxWidth="125dp"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/personimg" />
+
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="e mail ID       :"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/imageView2"
+            android:layout_alignStart="@+id/imageView2" />
+
+
+        <TextView
+            android:id="@+id/profile_emailinput"
+            android:hint="your emailID here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/profile_email"
+            android:layout_alignBottom="@+id/profile_email"
+            android:layout_toRightOf="@+id/profile_email"
+            android:layout_toEndOf="@+id/profile_email"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:id="@+id/profile_contact_input"
+            android:hint="your contact number here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/profile_ph_no"
+            android:layout_alignBottom="@+id/profile_ph_no"
+            android:layout_alignLeft="@+id/profile_emailinput"
+            android:layout_alignStart="@+id/profile_emailinput" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Qualification:"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="17sp"
+
+            android:layout_below="@+id/profile_ph_no"
+            android:layout_alignLeft="@+id/profile_email"
+            android:layout_alignStart="@+id/profile_email" />
+
+        <TextView
+            android:id="@+id/profile_ph_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Contact         :"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/profile_email"
+            android:layout_alignLeft="@+id/info_interests"
+            android:layout_alignStart="@+id/info_interests" />
+
+        <TextView
+            android:id="@+id/info_interests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Interests       :"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="17sp"
+
+            android:layout_below="@+id/textView9"
+            android:layout_alignLeft="@+id/textView7"
+            android:layout_alignStart="@+id/textView7" />
+
+        <ListView
+            android:id="@+id/interest_listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/info_interests"
+            android:layout_alignLeft="@+id/info_interests"
+            android:layout_alignStart="@+id/info_interests"
+            />
+
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Description  :"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="17sp"
+
+            android:layout_below="@+id/textView7"
+            android:layout_alignLeft="@+id/textView7"
+            android:layout_alignStart="@+id/textView7" />
+
+        <TextView
+
+            android:id="@+id/designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="your qualifications here"
+            android:layout_alignBaseline="@+id/textView7"
+            android:layout_alignBottom="@+id/textView7"
+            android:layout_alignLeft="@+id/profile_contact_input"
+            android:layout_alignStart="@+id/profile_contact_input" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="a little about yourself!"
+            android:layout_alignBaseline="@+id/textView9"
+            android:layout_alignBottom="@+id/textView9"
+            android:layout_alignLeft="@+id/designation"
+            android:layout_alignStart="@+id/designation" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,3 +1,12 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ebf6ff"
+    tools:context="hackathon_16_npt.com.example.nishant.projects.ViewProjectsActivity"
+    android:id="@+id/drawerLayout">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,69 +16,53 @@
     tools:context=".NewProfileActivity">
 
 
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="sans-serif"
-        android:text="Name"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/profile_designation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="37dp"
-        android:fontFamily="sans-serif"
-        android:text="Designation"
-        android:textColor="#000000"
-        android:textSize="17sp"
-         />
-
-    <TextView
-        android:id="@+id/profile_institution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="57dp"
-        android:fontFamily="sans-serif"
-        android:text="Institution"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3sp"
-        android:layout_marginTop="3dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/profile_img_border"
-        android:cropToPadding="true"
-        android:maxHeight="400px"
-        android:maxWidth="200px"
-        android:padding="1dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/personimg" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="106dp"
         android:background="?attr/colorPrimary"
-
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/Btn_back"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/ic_backbtn"
+            android:background="?android:selectableItemBackground"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:layout_marginBottom="10dp"
+
+        android:paddingLeft="7dp"
+        android:fontFamily="sans-serif"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/Btn_settings"
+            android:layout_marginLeft="180dp"
+            
+            android:layout_marginTop="0dp"
+            android:foregroundGravity="left"
+            android:src="@drawable/profile_settings"
+            android:background="?android:selectableItemBackground"/>
+
+
+
+    </android.support.v7.widget.Toolbar>
+
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout"
@@ -91,6 +84,21 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
+
 </RelativeLayout>
 
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header"
+        app:itemBackground="@drawable/pressed_gray"
+        android:layout_gravity="start"
+        android:id="@+id/navDrawer">
 
+    </android.support.design.widget.NavigationView>
+
+
+
+</android.support.v4.widget.DrawerLayout>

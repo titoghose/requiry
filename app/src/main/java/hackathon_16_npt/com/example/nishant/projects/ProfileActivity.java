@@ -1,4 +1,4 @@
-package hackathon_16_npt.com.example.nishant.projects;
+//package hackathon_16_npt.com.example.nishant.projects;
 
 
         import android.content.Intent;

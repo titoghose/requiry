@@ -38,7 +38,7 @@ public class SplashScreenActivity extends Activity {
 
 
         //Working Splash Code
-        int secondsDelayed = 4;
+        int secondsDelayed = 1;
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
