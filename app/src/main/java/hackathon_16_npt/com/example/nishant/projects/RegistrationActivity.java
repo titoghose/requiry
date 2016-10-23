@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -259,7 +260,7 @@ public class RegistrationActivity extends Activity // definition of the class Re
                     CloudBlobClient blobClient = account.createCloudBlobClient();
 
                     //Creating reference to a container in the blob storage account
-                    CloudBlobContainer container = blobClient.getContainerReference("profilepics");
+                    CloudBlobContainer container = blobClient.getContainerReference("profilepics"+ UUID.randomUUID().toString().replace("-", ""));
 
                     container.createIfNotExists();
 

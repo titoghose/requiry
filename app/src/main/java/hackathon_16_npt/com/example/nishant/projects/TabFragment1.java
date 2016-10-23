@@ -6,6 +6,9 @@ package hackathon_16_npt.com.example.nishant.projects;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import static hackathon_16_npt.com.example.nishant.projects.R.id.profile_name;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class TabFragment1 extends Fragment {
@@ -44,7 +49,7 @@ public class TabFragment1 extends Fragment {
         View v = inflater.inflate(R.layout.tab_fragment_1, container, false);
 
         ImageView profile = (ImageView) v.findViewById (R.id.profilePic);
-        profile.setImageBitmap(p.getProfilePicURL());
+        new ImageLoadTask(p.getProfilePicURL(), profile).execute();
 
         TextView profile_name = (TextView) v.findViewById(R.id.profile_name);
         profile_name.setText(p.getName());
@@ -68,7 +73,39 @@ public class TabFragment1 extends Fragment {
         ListView listViewToDo = (ListView) v.findViewById(R.id.interest_listview);
         listViewToDo.setAdapter(mAdapter);
         return v;
+    }
 
+    public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
+
+        private String url;
+        private ImageView imageView;
+
+        public ImageLoadTask(String url, ImageView imageView) {
+            this.url = url;
+            this.imageView = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            try {
+                URL urlConnection = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) urlConnection.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+            imageView.setImageBitmap(result);
+        }
 
     }
 

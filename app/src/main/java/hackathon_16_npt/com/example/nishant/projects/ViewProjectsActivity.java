@@ -34,6 +34,8 @@ import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.microsoft.windowsazure.mobileservices.table.query.QueryOrder;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewProjectsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,6 +49,8 @@ public class ViewProjectsActivity extends AppCompatActivity implements SearchVie
 
     TextView nav_name_textView;
 
+    private Profile p;
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class ViewProjectsActivity extends AppCompatActivity implements SearchVie
         */
 
         SharedPreferences sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE);
-        Profile p = new Profile();
+        p = new Profile();
         p.setName(sharedPreferences.getString("nameKey",""));
         p.setUsername(sharedPreferences.getString("usernameKey",""));
         p.setPassword(sharedPreferences.getString("passwordKey",""));
@@ -204,13 +208,95 @@ public class ViewProjectsActivity extends AppCompatActivity implements SearchVie
             protected Void doInBackground(Void... params) {
                 try {
                     result = mResearchProjectTable.orderBy("updatedAt", QueryOrder.Descending).execute().get();
+
                     runOnUiThread(new Runnable() {
 
                         @Override
                         public void run() {
                             mAdapter.clear();
+                            List<ResearchProject> temp = new ArrayList<>();
+                            boolean x = p.getInterest2().trim().length() == 0;
+                            boolean y = p.getInterest3().trim().length() == 0;
+                            Log.d(TAG,String.valueOf(x));
+                            Log.d(TAG,String.valueOf(y));
 
-                            for(ResearchProject item : result){
+                            if(x){
+                                if(y){
+                                    for(ResearchProject item : result){
+                                        boolean a = item.getDescription().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean b = item.getProjectName().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        Log.d(TAG,String.valueOf(a));
+                                        Log.d(TAG,String.valueOf(b));
+                                        if(a || b){
+                                            temp.add(item);
+                                        }
+                                    }
+                                }
+                                else{
+                                    for(ResearchProject item : result){
+                                        boolean a = item.getDescription().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean b = item.getProjectName().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean c = item.getDescription().toLowerCase().contains(p.getInterest3().toLowerCase());
+                                        boolean d = item.getProjectName().toLowerCase().contains(p.getInterest3().toLowerCase());
+                                        Log.d(TAG,String.valueOf(a));
+                                        Log.d(TAG,String.valueOf(b));
+                                        Log.d(TAG,String.valueOf(c));
+                                        Log.d(TAG,String.valueOf(d));
+                                        if(a || b || c || d){
+                                            temp.add(item);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if(y){
+                                    for(ResearchProject item : result){
+                                        boolean a = item.getDescription().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean b = item.getProjectName().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean c = item.getDescription().toLowerCase().contains(p.getInterest2().toLowerCase());
+                                        boolean d = item.getProjectName().toLowerCase().contains(p.getInterest2().toLowerCase());
+                                        Log.d(TAG,String.valueOf(a));
+                                        Log.d(TAG,String.valueOf(b));
+                                        Log.d(TAG,String.valueOf(c));
+                                        Log.d(TAG,String.valueOf(d));
+                                        if(a || b || c || d){
+                                            temp.add(item);
+                                        }
+                                    }
+                                }
+                                else{
+                                    for(ResearchProject item : result){
+                                        boolean a = item.getDescription().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean b = item.getProjectName().toLowerCase().contains(p.getInterest1().toLowerCase());
+                                        boolean c = item.getDescription().toLowerCase().contains(p.getInterest3().toLowerCase());
+                                        boolean d = item.getProjectName().toLowerCase().contains(p.getInterest3().toLowerCase());
+                                        boolean e = item.getProjectName().toLowerCase().contains(p.getInterest2().toLowerCase());
+                                        boolean f = item.getDescription().toLowerCase().contains(p.getInterest2().toLowerCase());
+
+                                        Log.d(TAG,String.valueOf(a));
+                                        Log.d(TAG,String.valueOf(b));
+                                        Log.d(TAG,String.valueOf(c));
+                                        Log.d(TAG,String.valueOf(d));
+                                        Log.d(TAG,String.valueOf(e));
+                                        Log.d(TAG,String.valueOf(f));
+                                        if(a || b || c || d || e || f){
+                                            temp.add(item);
+                                        }
+                                    }
+                                }
+                            }
+                            int j=0;
+                            for(ResearchProject item : result) {
+                                if(j!=temp.size() && item.getProjectName().equals(temp.get(j).getProjectName())){
+                                    j++;
+                                }
+                                else{
+                                    temp.add(item);
+                                }
+                            }
+                            result.clear();
+                            for(ResearchProject item : temp){
+                                result.add(item);
                                 mAdapter.add(item);
                             }
                         }

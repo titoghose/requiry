@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         SignIn = (Button) findViewById(R.id.BtnSignIn);
         SignUp = (Button) findViewById(R.id.BtnSignUp);
 
-        refreshItemsFromTable(User_Name.getText().toString(),User_Pass.getText().toString());
+        refreshItemsFromTable();
 
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,24 +79,24 @@ public class LoginActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    SharedPreferences sharedPreferences = getSharedPreferences("Profile",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("nameKey", result.get(i).getName());
-                    editor.putString("usernameKey", result.get(i).getUsername());
-                    editor.putString("passwordKey", result.get(i).getPassword());
-                    editor.putString("emailKey", result.get(i).getEmail());
-                    editor.putString("phoneKey", result.get(i).getPhone_no());
-                    editor.putString("interest1Key", result.get(i).getInterest1());
-                    editor.putString("interest2Key", result.get(i).getInterest2());
-                    editor.putString("interest3Key", result.get(i).getInterest3());
-                    editor.putString("designationKey", result.get(i).getDesignation());
-                    editor.putString("qualificationsKey", result.get(i).getQualification());
-                    editor.putString("profilePicURLKey", result.get(i).getProfilePicURL());
-                    editor.apply();
                     if (flag == 0) {
                         Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
                     }
                     else {
+                        SharedPreferences sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("nameKey", result.get(i).getName());
+                        editor.putString("usernameKey", result.get(i).getUsername());
+                        editor.putString("passwordKey", result.get(i).getPassword());
+                        editor.putString("emailKey", result.get(i).getEmail());
+                        editor.putString("phoneKey", result.get(i).getPhone_no());
+                        editor.putString("interest1Key", result.get(i).getInterest1());
+                        editor.putString("interest2Key", result.get(i).getInterest2());
+                        editor.putString("interest3Key", result.get(i).getInterest3());
+                        editor.putString("designationKey", result.get(i).getDesignation());
+                        editor.putString("qualificationsKey", result.get(i).getQualification());
+                        editor.putString("profilePicURLKey", result.get(i).getProfilePicURL());
+                        editor.apply();
                         User_Name.setText("");
                         User_Pass.setText("");
                         Intent nextScreen = new Intent(LoginActivity.this, ViewProjectsActivity.class);
@@ -126,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-    private void refreshItemsFromTable(final String u, final String p) {
+    private void refreshItemsFromTable() {
 
         new AsyncTask<Void, Void, Void>() {
 
